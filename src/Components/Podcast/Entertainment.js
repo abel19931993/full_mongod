@@ -1,23 +1,38 @@
-import React from 'react'
-import { entertainment } from '../../Data'
-import styled from 'styled-components'
-import EntertainmentItem from './EntertainmentItem'
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import Slider from 'react-slick'
+import React, { useEffect, useState } from "react";
+import { entertainment } from "../../Data";
+import styled from "styled-components";
+import EntertainmentItem from "./EntertainmentItem";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import axios from "axios";
 const Container = styled.div`
-  overflow:hidden ;
-  width:1115px ;
-  padding-left:25px ;
-  margin-left:1px ;
-  padding-right:25px ;
-`
+  overflow: hidden;
+  width: 1115px;
+  padding-left: 25px;
+  margin-left: 1px;
+  padding-right: 25px;
+`;
 const Tetxt = styled.h3`
-color:white ;
-padding:20px 20px 0px 20px ;
+  color: white;
+  padding: 20px 20px 0px 20px;
+`;
+const Entertainment = ({ allPodcast }) => {
+  const [entertainmentPodcast, setEntertainmentPodcast] = useState([]);
+  useEffect(() => {
+    const getPodcast = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:5000/podcast/?category=Entertainment"
+        );
+        setEntertainmentPodcast(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPodcast();
+  }, []);
 
-`
-const Entertainment = ({Podcasts}) => {
   const settings = {
     // lazyLoad:true,
     infinite: false,
@@ -30,22 +45,21 @@ const Entertainment = ({Podcasts}) => {
     // cssEase:"linear"
   };
   return (
-      <>
-   
+    <>
       <Tetxt>Entertainment</Tetxt>
       <Container>
-      <Slider {...settings}>
-        {
-          
-           entertainment.map(item=>(
-           < EntertainmentItem item={item}  key={item.id}/>
-            ))
-        }
+        <Slider {...settings}>
+          {entertainmentPodcast.map((item) => (
+            <EntertainmentItem
+              item={item}
+              podcastItem={item._id}
+              key={item.id}
+            />
+          ))}
         </Slider>
-    </Container>
-      </>
-    
-  )
-}
+      </Container>
+    </>
+  );
+};
 
-export default Entertainment
+export default Entertainment;

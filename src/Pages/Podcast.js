@@ -13,24 +13,19 @@ import Technology from '../Components/Podcast/Technology';
 import Categories from '../Components/Podcast/Categories';
 import axios from 'axios';
 const Podcast = () => {
-  const [Podcasts,setPodcsts] = useState([]);
+  const [allPodcast,setAllPodcast] = useState([]);
   useEffect(()=>{
-  
-    const getPodcast = async ()=>{
+    const getPodcasts = async ()=>{
       try{
-     const res = await axios.get('http://localhost:5000/podcast');
-    
-     setPodcsts(res.data)
-   
-     
- 
+     const res = await axios.get(`http://localhost:5000/podcast`);
+     setAllPodcast(res.data)
       }
       catch(err){
 console.log(err)
       }
    
     }
-    getPodcast()
+    getPodcasts()
   
   },[])
   return (
@@ -39,10 +34,10 @@ console.log(err)
 
     <div className='mainContainer' style={{ overflowY: 'scroll', marginTop:"50px" }} >
         <TopBar/> 
-        <Recent/>
-        <Entertainment Podcasts={Podcasts} /> 
-        <Technology/>
-        <Categories/>
+        <Recent allPodcast={allPodcast}/>
+        <Entertainment allPodcast={allPodcast}/> 
+        <Technology allPodcast={allPodcast}/>
+        <Categories allPodcast={allPodcast}/>
        
         </div>
         </>

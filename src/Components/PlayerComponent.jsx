@@ -4,7 +4,8 @@ import PlayerControls from "./PlayerControls";
 import PlayerDetails from "./PlayerDetails";
 import { AllAudio } from "../Data";
 import axios from "axios";
-
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -14,12 +15,12 @@ const Container = styled.div`
   padding: 25px;
   border-radius: 16px;
   box-shadow: 6px 6px 12px #ffffff83;
-  background-color: #ffa6008b;
+  color: red;
 `;
 
 const Audio = styled.audio``;
 const Heading = styled.h4`
-  color: #111;
+  color: red;
   font-size: 12px;
   text-transform: uppercase;
   text-align: center;
@@ -103,28 +104,20 @@ const Slider = styled.input`
 `;
 
 const PlayerComponent = () => {
-  const [audioss,setAudios] = useState([]);
-  const [audios] = useState(AllAudio)
-  useEffect(()=>{
-    const getPodcast = async ()=>{
-      try{
-     const res = await axios.get('http://localhost:5000/podcast');
-     setAudios(res.data)
-    
- 
-      }
-      catch(err){
-console.log(err)
-      }
-   
-    }
-    getPodcast()
-  
-  },[audios])
-  // console.log(audioss)
-  
+  let epsiodeContainer = [{ name: "kebede", age: 23 }];
+  let epsiodeContainerr = [];
+  const episodes = useSelector((state) => state.player.episodes);
+  // console.log(episodes[0])
+  // episodes.map((p)=>console.log(episodes[2].episode_name))
+  const [audios] = useState(AllAudio);
+  // function getValue(data) {
+  //   for (let key of Object.values(data)) {
+  //     console.log(episodes[2].episode_name);
+  //   }
+  // }
 
-  // console.log(audios)
+  // getValue(episodes[0]);
+
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -139,6 +132,10 @@ console.log(err)
   const [progressBarWidth, setProgressBarWidth] = useState(0);
   const rangeRef = useRef();
   const onChange = (e) => {
+    var location = useLocation();
+    const { Epsiodes } = location.state;
+    console.log(Epsiodes);
+
     const audio = audioEl.current;
     audio.currentTime = (audio.duration / 100) * e.target.value;
     setPercentage(e.target.value);
@@ -208,6 +205,7 @@ console.log(err)
       }
     });
   }, [currentSongIndex]);
+
   return (
     <Container image={audios[currentSongIndex].image}>
       <Audio

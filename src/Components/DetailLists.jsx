@@ -5,11 +5,16 @@ import imageurl from "../Image/photo_2022-05-21_21-47-02.jpg";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { addEpisode, removeEpsiode } from "../redux/playerRedux";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-   background-color:#121217 ;
+  background-color: #121217;
 `;
 const RowTitle = styled.div`
   display: flex;
@@ -70,22 +75,46 @@ const Button = styled.button`
 `;
 const RowText = styled.h3``;
 const DetailLists = () => {
-  const [episodes,setEpisodes] = useState([]);
-  useEffect(()=>{
-  
-    const getPodcast = async ()=>{
-      try{
-     const res = await axios.get(`http://localhost:5000/episode/${'62903754516551ab5b02d8e9'}/epsiode`);
-     setEpisodes(res.data)
+  const episode = useSelector((state) => state.player);
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+
+  const [podcast, setPodcast] = useState([]);
+  useEffect(() => {
+    const getPodcast = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/podcast/${id}`);
+        setPodcast(res.data);
+      } catch (err) {
+        console.log(err);
       }
-      catch(err){
-console.log(err)
+    };
+    getPodcast();
+  }, []);
+
+  const [episodes, setEpisodes] = useState([]);
+  useEffect(() => {
+    const getPodcast = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/episode/${id}/epsiode`
+        );
+
+        setEpisodes(res.data);
+      } catch (err) {
+        console.log(err);
       }
-   
+    };
+    getPodcast();
+  }, []);
+  const handleClick = () => {
+    if (episode.episodes.length >= 1) {
+      dispatch(removeEpsiode());
     }
-    getPodcast()
-  
-  },[])
+
+    dispatch(addEpisode({ episodes }));
+  };
   return (
     <Container>
       <RowTitle>
@@ -101,106 +130,27 @@ console.log(err)
       </RowTitle>
       <hr />
       <RowList>
-       
-      {
-        // episodes.map((p)=> console.log(p) )
-        console.log(episodes)
-      }
-        {/* <Row>
-          <RowContainer>
-            <ImageContainer>
-              <Image src={imageurl}></Image>
-            </ImageContainer>
-            <RowText>Tikur Sew</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>teddy afro</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>3:23</RowText>
-          </RowContainer>
-          <RowContainer>
-            <Button>
-              <PlayArrowIcon />
-            </Button>
-          </RowContainer>
-        </Row>
-        <Row>
-          <RowContainer>
-            <ImageContainer>
-              <Image src={imageurl}></Image>
-            </ImageContainer>
-            <RowText>Tikur Sew</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>teddy afro</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>3:23</RowText>
-          </RowContainer>
-          <RowContainer>
-            <Button>
-              <PlayArrowIcon />
-            </Button>
-          </RowContainer>
-        </Row>
-        <Row>
-          <RowContainer>
-            <ImageContainer>
-              <Image src={imageurl}></Image>
-            </ImageContainer>
-            <RowText>Tikur Sew</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>teddy afro</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>3:23</RowText>
-          </RowContainer>
-          <RowContainer>
-            <Button>
-              <PlayArrowIcon />
-            </Button>
-          </RowContainer>
-        </Row>
-        <Row>
-          <RowContainer>
-            <ImageContainer>
-              <Image src={imageurl}></Image>
-            </ImageContainer>
-            <RowText>Tikur Sew</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>teddy afro</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>3:23</RowText>
-          </RowContainer>
-          <RowContainer>
-            <Button>
-              <PlayArrowIcon />
-            </Button>
-          </RowContainer>
-        </Row>
-        <Row>
-          <RowContainer>
-            <ImageContainer>
-              <Image src={imageurl}></Image>
-            </ImageContainer>
-            <RowText>Tikur Sew</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>teddy afro</RowText>
-          </RowContainer>
-          <RowContainer>
-            <RowText>3:23</RowText>
-          </RowContainer>
-          <RowContainer>
-            <Button>
-              <PlayArrowIcon />
-            </Button>
-          </RowContainer>
-        </Row> */}
+        {episodes.map((p) => (
+          <Row onClick={handleClick}>
+            <RowContainer>
+              <ImageContainer>
+                <Image src={imageurl}></Image>
+              </ImageContainer>
+              <RowText>{p.episode_name}</RowText>
+            </RowContainer>
+            <RowContainer>
+              <RowText>{podcast.artist_name}</RowText>
+            </RowContainer>
+            <RowContainer>
+              <RowText>{p.episode_length}</RowText>
+            </RowContainer>
+            <RowContainer>
+              <Button>
+                <PlayArrowIcon />
+              </Button>
+            </RowContainer>
+          </Row>
+        ))}
       </RowList>
     </Container>
   );

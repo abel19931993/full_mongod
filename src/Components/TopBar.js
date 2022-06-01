@@ -4,6 +4,9 @@ import {IoIosNotificationsOutline} from 'react-icons/io'
 import {HiOutlineUser} from 'react-icons/hi'
 import '../Styles/Navbar.css'
 import styled from 'styled-components'
+import SearchBar from './SearchBar'
+import Data from '../Data.json'
+
 const Navbar = styled.div`
     
   overflow: hidden;
@@ -21,10 +24,7 @@ const Navbar = styled.div`
    z-index:2;
 `
 const LeftSide = styled.div`
-display:flex ;
-align-items:center ;
-justify-content: left;
-padding-left:25px ;
+
 flex: 50%;
  
 `
@@ -73,8 +73,7 @@ const TopBar = () => {
       
    <Navbar>
      <LeftSide>
-       <InputText placeholder='Search...'/>
-       <Button>Search</Button>
+      <SearchBar  data={Data} placeholder="Search here..."/>
      </LeftSide>
      <RightSide>
        <Icon ><IoIosNotificationsOutline/></Icon>

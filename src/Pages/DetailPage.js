@@ -27,7 +27,7 @@ const DetailPage = () => {
  
       }
       catch(err){
-console.log(err)
+      console.log(err)
       }
    
     }
@@ -39,7 +39,7 @@ console.log(err)
      
     <Div >
     <TopBar/>
-        <DetailDiscription />
+        <DetailDiscription Podcasts={Podcasts} />
         <DetailLists />
   </Div>
   </>

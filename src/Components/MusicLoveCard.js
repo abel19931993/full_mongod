@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css"
 import Slider from 'react-slick'
 const Container = styled.div`
   overflow:hidden ;
-  width:1115px ;
+  width:1220px ;
   padding-left:25px ;
   margin-left:1px ;
   padding-right:25px ;

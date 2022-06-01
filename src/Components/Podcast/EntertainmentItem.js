@@ -4,7 +4,10 @@ import {MdFavoriteBorder} from 'react-icons/md'
 import {BsPlayFill} from 'react-icons/bs'
 import {BiDotsHorizontalRounded} from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom';
-import s from '../../Image/photo_2022-05-21_21-47-36.jpg'
+import { Link } from 'react-router-dom'
+var image = require('../../Image/photo_2022-05-21_21-47-36.jpg');
+// import s from '../../Image/photo_2022-05-21_21-47-36.jpg'
+
 const Infoi = styled.div`
 opacity:0;
  position:absolute ;
@@ -69,28 +72,25 @@ color:white ;
 font-size:15px ;
 font-weight:bold ;
 `
-const EntertainmentItem = ({item}) => {
-  const navigate = useNavigate();
-  const displayPage = (e)=>{
-    
-    
-    navigate("/detail/:id", { replace: true });
-    
-    }
+const EntertainmentItem = ({item,podcastItem }) => {
+  // var imageUrl = `${item.image}`
+ 
   
   return (
-    <Container onClick={displayPage}>
-         <Image src={s}/>
+    <Container >
+         <Link to={`/detail/${podcastItem }`}>
+         <Image src= '' alt={item.podcast_description}/>
          <Infoi>
         <Icon ><BsPlayFill/></Icon>
           <Icon><MdFavoriteBorder/></Icon>
           <Icon><BiDotsHorizontalRounded/></Icon>
         </Infoi>
         <Info>
-         <Title>{item. musicTitle}</Title>
-         <ArtistName>{item.artistName}</ArtistName>
+         <Title>{item.podcast_title}</Title>
+         <ArtistName>{item.artist_name}</ArtistName>
          <Date>{item.releasedDate}</Date>
           </Info>
+          </Link>
     </Container>
   )
 }
