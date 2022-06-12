@@ -4,15 +4,17 @@ const playerSlice = createSlice({
   name: "player", //cart
   initialState: {
     episodes: [], //products
-    // episodeIndex:0
+    episodeIndex:0
   },
   reducers: {
     addEpisode: (state, action) => {
-      console.log(action.payload.episodes);
-      state.episodes = [...action.payload.episodes];
+      
+      state.episodes = action.payload.episodes;
+      state.episodeIndex = action.payload.index;
     },
     removeEpsiode: (state) => {
       state.episodes = [];
+      state.episodeIndex=0;
     },
   },
 });

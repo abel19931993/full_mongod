@@ -69,6 +69,7 @@ const Icon = styled.div`
     background-color:#72727D ;
 }`  
 const TopBar = () => {
+  
   return (
       
    <Navbar>

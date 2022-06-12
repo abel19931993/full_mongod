@@ -82,7 +82,7 @@ font-size: 20px;
 }
 .MenuContainer ul li a{
     text-decoration: none;
-    color:red;;
+    color:#DDD;
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -98,7 +98,7 @@ font-size: 20px;
     left: -14px;
     width: 0px;
     height: 100%;
-    background: #49e12e;
+    background: orange;
     border-radius: 5px;
 }
 .MenuContainer ul li:hover::before,
@@ -108,7 +108,7 @@ font-size: 20px;
 }
 .MenuContainer ul li:hover a,
 .MenuContainer ul li.active a{
-    color: #f1f1f1;
+    color: orange;
     transition: 0.3;
 }
 .playListContainer{

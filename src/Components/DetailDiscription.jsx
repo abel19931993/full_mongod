@@ -5,6 +5,9 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import imageurl from "../Image/photo_2022-05-21_21-47-02.jpg";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addEpisode, removeEpsiode } from "../redux/playerRedux";
+import { Link } from "react-router-dom";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -25,7 +28,7 @@ const Desc = styled.div`
 const Title = styled.h1`
   font-size: 36px;
   margin: 24px 0;
-  color: red;
+  color: whitesmoke;
 `;
 const Image = styled.img`
   width: 250px;
@@ -37,12 +40,12 @@ const Image = styled.img`
 const SubTitle = styled.h3`
   margin-bottom: 12px;
   font-size: 16px;
-  color: red;
+  color: whitesmoke;
 `;
 const DetailText = styled.p`
   margin-bottom: 6px;
   font-size: 12px;
-  color: red;
+  color: whitesmoke;
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -65,9 +68,12 @@ const Button = styled.button`
 `;
 const SubButton = styled.div`
   margin-left: 24px;
+  color: white;
 `;
 
 const DeatailDiscription = () => {
+  const episode = useSelector((state) => state.player);
+  const dispatch = useDispatch();
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [podcast, setPodcast] = useState([]);
@@ -83,18 +89,42 @@ const DeatailDiscription = () => {
     };
     getPodcast();
   }, []);
+  const [episodes, setEpisodes] = useState([]);
+  useEffect(() => {
+    const getPodcast = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/episode/${id}/epsiode`
+        );
+
+        setEpisodes(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPodcast();
+  }, []);
+  const handleClick = (index) => {
+    if (episode.episodes.length >= 1) {
+      dispatch(removeEpsiode());
+    
+    }
+
+    dispatch(addEpisode({ episodes,index }));
+  
+  };
 
   return (
     <Container>
       <ImageContainer>
-        <Image src={imageurl} />
+        <Image src={podcast.image} />
       </ImageContainer>
       <Desc>
         <Title>{podcast.artist_name}</Title>
         <SubTitle>{podcast.podcast_title}</SubTitle>
         <DetailText>{podcast.podcast_description}</DetailText>
         <ButtonContainer>
-          <Button>
+         <Button onClick={()=>handleClick(0)}>
             <PlayArrowIcon />
           </Button>
           <SubButton>

@@ -11,6 +11,7 @@ const Div = styled.div`
   width: 80%;
   height:100vh;
   margin-top: 50px ;
+  background-color: #121217;
 
 `;
 const DetailPage = () => {

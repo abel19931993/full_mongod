@@ -32,7 +32,7 @@ console.log(err)
     
    <>
 
-    <div className='mainContainer' style={{ overflowY: 'scroll', marginTop:"50px" }} >
+        <div className='mainContainer' style={{ overflowY: 'scroll', marginTop:"50px" }} >
         <TopBar/> 
         <Recent allPodcast={allPodcast}/>
         <Entertainment allPodcast={allPodcast}/> 

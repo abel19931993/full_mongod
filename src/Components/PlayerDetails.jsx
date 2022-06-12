@@ -24,7 +24,7 @@ const Image = styled.img`
   border-radius: 50%;
 `;
 const Title = styled.h3`
-  color: #000;
+  color: #fff;
   font-size: 24px;
   /* text-shadow: 6px 6px 12px rgb(0, 0, 0, 0.6); */
   align-items: center;
@@ -48,7 +48,7 @@ const PlayerDetails = (props) => {
       </ImageContainer>
 
       <marquee direction="right" scrollamount="3">
-        <Title>{props.audio.title}</Title>
+        <Title>{props.audio.episode_name}</Title>
       </marquee>
       <ArtistTitle>{props.audio.artist}</ArtistTitle>
     </Container>

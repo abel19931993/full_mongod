@@ -14,13 +14,13 @@ const Container = styled.div`
   flex-direction: column;
   padding: 25px;
   border-radius: 16px;
-  box-shadow: 6px 6px 12px #ffffff83;
+  box-shadow: 1px 1px 3px #ffffff83;
   color: red;
 `;
 
 const Audio = styled.audio``;
 const Heading = styled.h4`
-  color: red;
+  color: orange;
   font-size: 12px;
   text-transform: uppercase;
   text-align: center;
@@ -103,24 +103,11 @@ const Slider = styled.input`
   }
 `;
 
-const PlayerComponent = () => {
-  let epsiodeContainer = [{ name: "kebede", age: 23 }];
-  let epsiodeContainerr = [];
-  const episodes = useSelector((state) => state.player.episodes);
-  // console.log(episodes[0])
-  // episodes.map((p)=>console.log(episodes[2].episode_name))
-  const [audios] = useState(AllAudio);
-  // function getValue(data) {
-  //   for (let key of Object.values(data)) {
-  //     console.log(episodes[2].episode_name);
-  //   }
-  // }
-
-  // getValue(episodes[0]);
-
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+const PlayerComponent = ({episodes,index}) => {
+  const [audios,setAudios] = useState(episodes);
+  const [currentSongIndex, setCurrentSongIndex] = useState(index);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -132,9 +119,7 @@ const PlayerComponent = () => {
   const [progressBarWidth, setProgressBarWidth] = useState(0);
   const rangeRef = useRef();
   const onChange = (e) => {
-    var location = useLocation();
-    const { Epsiodes } = location.state;
-    console.log(Epsiodes);
+    
 
     const audio = audioEl.current;
     audio.currentTime = (audio.duration / 100) * e.target.value;
@@ -205,48 +190,53 @@ const PlayerComponent = () => {
       }
     });
   }, [currentSongIndex]);
-
-  return (
-    <Container image={audios[currentSongIndex].image}>
-      <Audio
-        src={audios[currentSongIndex].audio}
-        ref={audioEl}
-        onLoadedData={(e) => {
-          setDuration(e.currentTarget.duration.toFixed(2));
-        }}
-        onTimeUpdate={getCurrDuration}
-      ></Audio>
-      <Heading>Playing Now</Heading>
-      <PlayerDetails audio={audios[currentSongIndex]} />
-      <PlayerControls
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        SkipSong={skipSong}
-        duration={duration}
-        currentTime={currentTime}
+return (
+<Container>
+    <Audio
+      src={audios[currentSongIndex].episode_audio}
+      ref={audioEl}
+      onLoadedData={(e) => {
+        setDuration(e.currentTarget.duration.toFixed(2));
+      }}
+      onTimeUpdate={getCurrDuration}
+    ></Audio>
+    <Heading>Playing Now</Heading>
+    <PlayerDetails audio={audios[currentSongIndex]} />
+    <PlayerControls
+      isPlaying={isPlaying}
+      setIsPlaying={setIsPlaying}
+      SkipSong={skipSong}
+      duration={duration}
+      currentTime={currentTime}
+    />
+    <SliderContainer>
+      <ProgersCover style={{ width: `${progressBarWidth}px` }}></ProgersCover>
+      <Thumb
+        style={{ left: `${postion}%`, marginLeft: `${marginLeft + 10}px` }}
+      ></Thumb>
+      <Slider
+        ref={rangeRef}
+        type="range"
+        step="0.01"
+        onChange={onChange}
+        value={postion}
       />
-      <SliderContainer>
-        <ProgersCover style={{ width: `${progressBarWidth}px` }}></ProgersCover>
-        <Thumb
-          style={{ left: `${postion}%`, marginLeft: `${marginLeft + 10}px` }}
-        ></Thumb>
-        <Slider
-          ref={rangeRef}
-          type="range"
-          step="0.01"
-          onChange={onChange}
-          value={postion}
-        />
-      </SliderContainer>
+    </SliderContainer>
 
-      <Text>
-        <strong>Next up:</strong>
-        <marquee direction="right" scrollamount="3">
-          {audios[nextSongIndex].title}
-        </marquee>
-      </Text>
-    </Container>
-  );
-};
+    <Text>
+      <strong>Next up:</strong>
+      <marquee direction="right" scrollamount="3">
+        {
+        audios.length-1 === currentSongIndex?audios[0].episode_name
+        :audios[nextSongIndex].episode_name
+        }
+        
+      </marquee>
+    </Text>
+  </Container>
+
+);}
+  
+
 
 export default PlayerComponent;

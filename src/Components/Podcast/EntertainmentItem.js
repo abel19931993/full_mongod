@@ -5,9 +5,12 @@ import {BsPlayFill} from 'react-icons/bs'
 import {BiDotsHorizontalRounded} from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
-var image = require('../../Image/photo_2022-05-21_21-47-36.jpg');
-// import s from '../../Image/photo_2022-05-21_21-47-36.jpg'
-
+//  var image = require('../../Image/photo_2022-05-21_21-46-50.jpg');
+  // import s from '../../Image/photo_2022-05-21_21-47-36.jpg'
+for (var i=0;i<20;i++)
+{
+  console.log("Number "+i)
+}
 const Infoi = styled.div`
 opacity:0;
  position:absolute ;
@@ -74,12 +77,10 @@ font-weight:bold ;
 `
 const EntertainmentItem = ({item,podcastItem }) => {
   // var imageUrl = `${item.image}`
- 
-  
   return (
     <Container >
          <Link to={`/detail/${podcastItem }`}>
-         <Image src= '' alt={item.podcast_description}/>
+         <Image src={item.image} alt={item.podcast_description}/>
          <Infoi>
         <Icon ><BsPlayFill/></Icon>
           <Icon><MdFavoriteBorder/></Icon>

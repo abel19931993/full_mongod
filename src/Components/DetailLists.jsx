@@ -6,7 +6,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import { addEpisode, removeEpsiode } from "../redux/playerRedux";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -14,12 +14,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  background-color: #121217;
+  
 `;
 const RowTitle = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px;
+  color: whitesmoke ;
 `;
 const Row = styled.div`
   display: flex;
@@ -27,11 +28,13 @@ const Row = styled.div`
   padding: 6px;
   transition: all 0.3s ease;
   :hover {
-    background-color: #ddd;
+    background-color: whitesmoke;
+    color: black ;
   }
 `;
 const RowList = styled.div`
   overflow-y: scroll;
+  
 `;
 const TitleRowText = styled.div`
   justify-content: center;
@@ -41,6 +44,7 @@ const TitleRowText = styled.div`
   overflow-y: hidden;
 `;
 const RowContainer = styled.div`
+ color: whitesmoke ;
   display: flex;
   flex: 1;
   align-items: center;
@@ -65,7 +69,7 @@ const Button = styled.button`
   margin-right: 12px;
   width: 30px;
   height: 30px;
-  color: grey;
+  color: whitesmoke;
   cursor: pointer;
   transition: all 0.3s ease;
   :hover {
@@ -76,6 +80,8 @@ const Button = styled.button`
 const RowText = styled.h3``;
 const DetailLists = () => {
   const episode = useSelector((state) => state.player);
+  const indexs = useSelector((state)=>state.player.episodeIndex);
+
   const dispatch = useDispatch();
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -108,15 +114,19 @@ const DetailLists = () => {
     };
     getPodcast();
   }, []);
-  const handleClick = () => {
-    if (episode.episodes.length >= 1) {
-      dispatch(removeEpsiode());
-    }
+  const handleClick = (index) => {
+  
+    // if (episode.episodes.length >= 1) {
+    //   dispatch(removeEpsiode());
+    // }
 
-    dispatch(addEpisode({ episodes }));
+    dispatch(addEpisode({ episodes ,index}));
   };
   return (
     <Container>
+      {
+        console.log(indexs)
+      }
       <RowTitle>
         <TitleRowText>Track</TitleRowText>
         <TitleRowText>Artists</TitleRowText>
@@ -130,11 +140,11 @@ const DetailLists = () => {
       </RowTitle>
       <hr />
       <RowList>
-        {episodes.map((p) => (
-          <Row onClick={handleClick}>
+        {episodes.map((p,index) => (
+          <Row onClick={()=>handleClick(index)} >
             <RowContainer>
               <ImageContainer>
-                <Image src={imageurl}></Image>
+                <Image src={podcast.image}></Image>
               </ImageContainer>
               <RowText>{p.episode_name}</RowText>
             </RowContainer>

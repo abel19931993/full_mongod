@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+var image = require('../../Image/photo_2022-05-21_21-47-20.jpg');
 const Container = styled.div`
  flex:1; 
  margin:3px;
@@ -34,7 +34,7 @@ font-size:20px ;
 const TechnologyItem = ({item}) => {
   return (
     <Container>
-        <Image src={item.img}/> 
+        <Image src={ image}/> 
     </Container>
   )
 }

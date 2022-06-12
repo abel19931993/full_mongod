@@ -8,24 +8,25 @@ import Menu from './Menu';
 import MenuPlayList from './MenuPlayList';
 import TrackList from "./TrackList"
 import PlayerComponent from './PlayerComponent';
+import { useSelector } from 'react-redux';
 const LeftMenu = () => {
+    const episodes =  useSelector((state) => state.player.episodes);
+    const index = useSelector((state)=>state.player.episodeIndex)
+  
     return (
         
         <div className='leftMenu'>
-            {
-                console.log("From left menu")
-            }
+      
             <div className='logoContainer'>
                <img  src={pic} />
-                <h2>Awd</h2>
-                <i>
-                 <FaEllipsisH/>
-                </i>
+                <h2>Awud</h2>
+             
                 </div>
            
             
-            <Menu title={'Menu'} MenuObject={MenuList}/>
-            <PlayerComponent/>
+            <Menu  MenuObject={MenuList}/>
+           { console.log(episodes.length)}
+          { episodes.length !=0? <PlayerComponent episodes={episodes} index={index}/>:<div></div>}
         </div>
     )
 }
