@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { entertainment } from "../../Data";
 import styled from "styled-components";
 import EntertainmentItem from "./EntertainmentItem";
 import "slick-carousel/slick/slick.css";
@@ -8,16 +7,17 @@ import Slider from "react-slick";
 import axios from "axios";
 const Container = styled.div`
   overflow: hidden;
-  width: 1115px;
+  width: 1220px;
   padding-left: 25px;
   margin-left: 1px;
   padding-right: 25px;
 `;
 const Tetxt = styled.h3`
   color: white;
-  padding: 20px 20px 0px 20px;
+  padding: 20px 20px 20px 30px;
 `;
-const Entertainment = ({ allPodcast }) => {
+const Entertainment = () => {
+  
   const [entertainmentPodcast, setEntertainmentPodcast] = useState([]);
   useEffect(() => {
     const getPodcast = async () => {

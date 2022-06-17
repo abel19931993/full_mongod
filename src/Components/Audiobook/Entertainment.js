@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { entertainment } from "../../Data";
 import styled from "styled-components";
 import EntertainmentItem from "./EntertainmentItem";
 import "slick-carousel/slick/slick.css";
@@ -17,7 +16,7 @@ const Tetxt = styled.h3`
   color: white;
   padding: 20px 20px 0px 20px;
 `;
-const Entertainment = ({ allPodcast }) => {
+const Entertainment = () => {
   const [entertainmentPodcast, setEntertainmentPodcast] = useState([]);
   useEffect(() => {
     const getPodcast = async () => {

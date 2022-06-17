@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 const LeftMenu = () => {
     const episodes =  useSelector((state) => state.player.episodes);
     const index = useSelector((state)=>state.player.episodeIndex)
-  
     return (
         
         <div className='leftMenu'>
@@ -25,7 +24,7 @@ const LeftMenu = () => {
            
             
             <Menu  MenuObject={MenuList}/>
-           { console.log(episodes.length)}
+       
           { episodes.length !=0? <PlayerComponent episodes={episodes} index={index}/>:<div></div>}
         </div>
     )

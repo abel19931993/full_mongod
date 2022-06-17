@@ -6,7 +6,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-
+import { AllAudio } from "../Data";
 import { addEpisode, removeEpsiode } from "../redux/playerRedux";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -116,17 +116,15 @@ const DetailLists = () => {
   }, []);
   const handleClick = (index) => {
   
-    // if (episode.episodes.length >= 1) {
-    //   dispatch(removeEpsiode());
-    // }
+    if (episode.episodes.length >= 1) {
+      dispatch(removeEpsiode());
+    }
 
     dispatch(addEpisode({ episodes ,index}));
+  
   };
   return (
     <Container>
-      {
-        console.log(indexs)
-      }
       <RowTitle>
         <TitleRowText>Track</TitleRowText>
         <TitleRowText>Artists</TitleRowText>
@@ -144,7 +142,7 @@ const DetailLists = () => {
           <Row onClick={()=>handleClick(index)} >
             <RowContainer>
               <ImageContainer>
-                <Image src={podcast.image}></Image>
+                <Image src={p.image}></Image>
               </ImageContainer>
               <RowText>{p.episode_name}</RowText>
             </RowContainer>

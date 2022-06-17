@@ -104,6 +104,7 @@ const Slider = styled.input`
 `;
 
 const PlayerComponent = ({episodes,index}) => {
+
   const [audios,setAudios] = useState(episodes);
   const [currentSongIndex, setCurrentSongIndex] = useState(index);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
@@ -111,7 +112,8 @@ const PlayerComponent = ({episodes,index}) => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  //slider
+  console.log("currentSongIndex "+currentSongIndex)
+  console.log("Index value "+index)
 
   const [postion, setPostion] = useState(0);
   const [marginLeft, setMarginLeft] = useState(-20);
@@ -191,9 +193,11 @@ const PlayerComponent = ({episodes,index}) => {
     });
   }, [currentSongIndex]);
 return (
+
 <Container>
+   
     <Audio
-      src={audios[currentSongIndex].episode_audio}
+      src={  index>=currentSongIndex ? audios[index].episode_audio : audios[currentSongIndex].episode_audio }
       ref={audioEl}
       onLoadedData={(e) => {
         setDuration(e.currentTarget.duration.toFixed(2));
@@ -201,7 +205,11 @@ return (
       onTimeUpdate={getCurrDuration}
     ></Audio>
     <Heading>Playing Now</Heading>
-    <PlayerDetails audio={audios[currentSongIndex]} />
+    {
+    console.log( audios[currentSongIndex].episode_name) 
+    }
+    
+    <PlayerDetails audio={audios[index]} />
     <PlayerControls
       isPlaying={isPlaying}
       setIsPlaying={setIsPlaying}

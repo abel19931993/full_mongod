@@ -5,13 +5,13 @@ import image4 from '../src/Image/photo_2022-05-21_21-47-40.jpg'
 import image5 from '../src/Image/photo_2022-05-21_21-46-58.jpg'
 /***************PODCAST IAMGE LIST */
 
-// import audio3 from "../src/Image/DJOW - LOSING CONTROL (ORIGINAL MIX).mp3";
-// import audio4 from "../src/Image/Teddy  Girmawineto.mp3"
+import audio3 from "../src/Image/DJOW - LOSING CONTROL (ORIGINAL MIX).mp3";
+import audio4 from "../src/Image/Teddy  Girmawineto.mp3"
 import image6 from '../src/Image/photo_2022-05-21_21-47-13.jpg';
 import image7 from '../src/Image/photo_2022-05-21_21-46-55.jpg'
 import image8 from '../src/Image/photo_2022-05-21_21-47-20.jpg'
 import image9 from '../src/Image/photo_2022-05-21_21-47-18.jpg'
-// import audio10 from '../src/Image/Teddy  alamn alamn.mp3'
+import audio10 from '../src/Image/Pamfalon -  Dish Fela_250919085546.mp3'
 
 export const AllCatgories = [
     {
@@ -179,14 +179,46 @@ export const recent = [
     },
     {
         id:2,
-        img:image6
+        img:image1
     },
     {
         id:3,
-        img:image6
+        img:image2
     },
     {
         id:4,
+        img:image3
+    },
+    {
+        id:5,
+        img:image4
+    },
+    {
+        id:6,
+        img:image5
+    },
+    {
+        id:7,
+        img:image7
+    },
+    {
+        id:8,
+        img:image8
+    },
+    {
+        id:9,
+        img:image9
+    },
+    {
+        id:10,
+        img:image1
+    },
+    {
+        id:11,
+        img:image6
+    },
+    {
+        id:12,
         img:image6
     },
 
@@ -250,4 +282,30 @@ export const all =[
         title:"College"
     },
     
+]
+export const AllAudio =[
+    {
+      id:1,
+      audio:audio10,
+      index:0,
+      image:image1,
+      epsiode_name:"A",
+      artist:"a"
+    },
+    {
+        id:2,
+        audio:audio4,
+        index:1,
+        image:image2,
+        epsiode_name:"B",
+        artist:"b"
+      },
+      {
+        id:3,
+        audio:audio3,
+        index:2,
+        image:image3,
+        epsiode_name:"C",
+        artist:"c"
+      }
 ]

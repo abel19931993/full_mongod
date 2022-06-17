@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addEpisode, removeEpsiode } from "../redux/playerRedux";
 import { Link } from "react-router-dom";
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -83,6 +84,7 @@ const DeatailDiscription = () => {
         const res = await axios.get(`http://localhost:5000/podcast/${id}`);
 
         setPodcast(res.data);
+      
       } catch (err) {
         console.log(err);
       }
@@ -117,7 +119,7 @@ const DeatailDiscription = () => {
   return (
     <Container>
       <ImageContainer>
-        <Image src={podcast.image} />
+        <Image src={podcast.image}/>
       </ImageContainer>
       <Desc>
         <Title>{podcast.artist_name}</Title>
