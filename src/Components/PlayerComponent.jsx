@@ -6,6 +6,7 @@ import { AllAudio } from "../Data";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { BASE_URL,BASE_URL_LOCAL} from '../Env'
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -197,7 +198,7 @@ return (
 <Container>
    
     <Audio
-      src={  index>=currentSongIndex ? audios[index].episode_audio : audios[currentSongIndex].episode_audio }
+      src={  index>=currentSongIndex ?`${BASE_URL}${audios[index].episode_audio}` : `${BASE_URL}${audios[currentSongIndex].episode_audio}` }
       ref={audioEl}
       onLoadedData={(e) => {
         setDuration(e.currentTarget.duration.toFixed(2));

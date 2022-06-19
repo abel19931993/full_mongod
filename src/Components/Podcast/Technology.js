@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import TechnologyItem from './TechnologyItem'
+import { BASE_URL,BASE_URL_LOCAL} from '../../Env'
 const Container = styled.div`
    overflow: hidden;
   width: 1220px;
@@ -18,12 +19,13 @@ const Tetxt = styled.h3`
 
 `
 const Technology = () => {
+  
   const [technologyPodcast, setTechnologyPodcast] = useState([]);
   useEffect(() => {
     const getPodcast = async () => {
       try {
         const res = await axios.get(
-        'http://localhost:5000/podcast/?category=Technology'
+        `${BASE_URL}/podcast/`
         );
         setTechnologyPodcast(res.data);
       } catch (err) {
@@ -32,6 +34,19 @@ const Technology = () => {
     };
     getPodcast();
   }, []);
+  // useEffect(() => {
+  //   const getPodcast = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //       `${BASE_URL_LOCAL}/podcast/?category=Technology`
+  //       );
+  //       setTechnologyPodcast(res.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getPodcast();
+  // }, []);
   const settings = {
     // lazyLoad:true,
     infinite: false,

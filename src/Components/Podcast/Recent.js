@@ -1,8 +1,9 @@
 import React from 'react'
 import { recent } from '../../Data'
+
 import styled from 'styled-components'
 import RecentItem from './RecentItem'
-
+import { BASE_URL,BASE_URL_LOCAL} from '../../Env'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from 'react-slick'
@@ -32,6 +33,9 @@ const Recent = () => {
   };
   return (
       <>
+      {
+        console.log(BASE_URL)
+      }
       <Tetxt>Recent</Tetxt>
       <Container>
       <Slider {...settings}>

@@ -72,17 +72,20 @@ font-weight:bold ;
 const TechnologyItem = ({item,podcastItem }) => {
   return (
     <Container >
+      {
+
+      }
          <Link to={`/detail/${podcastItem }`}>
-         <Image src={item.image} alt={item.podcast_description}/>
+         <Image src={"http://192.168.43.229:8000"+item.image} alt={item.description}/>
          <Infoi>
         <Icon ><BsPlayFill/></Icon>
           <Icon><MdFavoriteBorder/></Icon>
           <Icon><BiDotsHorizontalRounded/></Icon>
         </Infoi>
         <Info>
-         <Title>{item.podcast_title}</Title>
-         <ArtistName>{item.artist_name}</ArtistName>
-         <Date>{item.releasedDate}</Date>
+         <Title>{item.title}</Title>
+         <ArtistName>{item.podcasters}</ArtistName>
+         {/* <Date>{item.releasedDate}</Date> */}
           </Info>
           </Link>
     </Container>

@@ -3,9 +3,11 @@ import styled from "styled-components";
 import EntertainmentItem from "./EntertainmentItem";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import Slider from "react-slick";
 import axios from "axios";
 const Container = styled.div`
+
   overflow: hidden;
   width: 1115px;
   padding-left: 25px;
@@ -45,6 +47,7 @@ const Entertainment = () => {
   };
   return (
     <>
+    
       <Tetxt>Entertainment</Tetxt>
       <Container>
         <Slider {...settings}>

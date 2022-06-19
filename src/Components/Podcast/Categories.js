@@ -2,6 +2,7 @@ import React from 'react'
 import { all } from '../../Data'
 import styled from 'styled-components'
 import CategoriesItem from './CategoriesItem'
+import { BASE_URL,BASE_URL_LOCAL} from '../../Env'
 // import { geners } from '../Data'
 // import GenersItem from './GenersItem'
 const Container = styled.div`

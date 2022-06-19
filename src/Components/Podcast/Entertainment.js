@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from "axios";
+import { BASE_URL,BASE_URL_LOCAL} from '../../Env'
 const Container = styled.div`
   overflow: hidden;
   width: 1220px;
@@ -23,7 +24,7 @@ const Entertainment = () => {
     const getPodcast = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/podcast/?category=Entertainment"
+          `${BASE_URL_LOCAL}/podcast/?category=Entertainment`
         );
         setEntertainmentPodcast(res.data);
       } catch (err) {

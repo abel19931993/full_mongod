@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addEpisode, removeEpsiode } from "../redux/playerRedux";
 import { Link } from "react-router-dom";
+import { BASE_URL,BASE_URL_LOCAL} from '../Env'
 
 const Container = styled.div`
   display: flex;
@@ -77,13 +78,17 @@ const DeatailDiscription = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const id = location.pathname.split("/")[2];
-  const [podcast, setPodcast] = useState([]);
+  const [podcast, setPodcast] = useState([]);{
+    console.log(id)
+    console.log(BASE_URL)
+  }
   useEffect(() => {
     const getPodcast = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/podcast/${id}`);
+        const res = await axios.get(`${BASE_URL}/podcast/${id}`);
 
         setPodcast(res.data);
+        console.log(res.data)
       
       } catch (err) {
         console.log(err);
@@ -93,38 +98,38 @@ const DeatailDiscription = () => {
   }, []);
   const [episodes, setEpisodes] = useState([]);
   useEffect(() => {
-    const getPodcast = async () => {
-      try {
-        const res = await axios.get(
-          `http://localhost:5000/episode/${id}/epsiode`
-        );
+    // const getPodcast = async () => {
+    //   try {
+    //     const res = await axios.get(
+    //       `${BASE_URL}/episode/${id}/epsiode`
+    //     );
 
-        setEpisodes(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getPodcast();
+    //     setEpisodes(res.data);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // getPodcast();
   }, []);
   const handleClick = (index) => {
-    if (episode.episodes.length >= 1) {
-      dispatch(removeEpsiode());
+    // if (episode.episodes.length >= 1) {
+    //   dispatch(removeEpsiode());
     
-    }
+    // }
 
-    dispatch(addEpisode({ episodes,index }));
+    // dispatch(addEpisode({ episodes,index }));
   
   };
 
   return (
     <Container>
       <ImageContainer>
-        <Image src={podcast.image}/>
+        <Image src={`${BASE_URL}${podcast.image}`}/>
       </ImageContainer>
       <Desc>
-        <Title>{podcast.artist_name}</Title>
-        <SubTitle>{podcast.podcast_title}</SubTitle>
-        <DetailText>{podcast.podcast_description}</DetailText>
+        <Title>{podcast.podcasters}</Title>
+        <SubTitle>{podcast.title}</SubTitle>
+        <DetailText>{podcast.description}</DetailText>
         <ButtonContainer>
          <Button onClick={()=>handleClick(0)}>
             <PlayArrowIcon />

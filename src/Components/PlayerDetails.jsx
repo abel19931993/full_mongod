@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import imageurl from "../Image/photo_2022-05-21_21-47-02.jpg";
-
+import { BASE_URL,BASE_URL_LOCAL} from '../Env'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@ const PlayerDetails = (props) => {
   return (
     <Container>
       <ImageContainer>
-        <Image src={props.audio.image}></Image>
+        <Image src={`${BASE_URL}${props.audio.image}`}></Image>
       </ImageContainer>
 
       <marquee direction="right" scrollamount="3">
