@@ -104,9 +104,11 @@ const Slider = styled.input`
   }
 `;
 
-const PlayerComponent = ({episodes,index}) => {
+const PlayerComponent = ({contents,index}) => {
+//  console.log("before",contents)
+//   const [contents,setAudios] = useState(contents);
 
-  const [audios,setAudios] = useState(episodes);
+//   console.log(audios)
   const [currentSongIndex, setCurrentSongIndex] = useState(index);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -156,7 +158,7 @@ const PlayerComponent = ({episodes,index}) => {
         let temp = currentSongIndex;
         temp++;
 
-        if (temp > audios.length - 1) {
+        if (temp > contents.length - 1) {
           temp = 0;
         }
         return temp;
@@ -167,7 +169,7 @@ const PlayerComponent = ({episodes,index}) => {
         temp--;
 
         if (temp < 0) {
-          temp = audios.length - 1;
+          temp = contents.length - 1;
         }
         return temp;
       });
@@ -186,7 +188,7 @@ const PlayerComponent = ({episodes,index}) => {
   };
   useEffect(() => {
     setNextSongIndex(() => {
-      if (currentSongIndex + 1 > audios.length - 1) {
+      if (currentSongIndex + 1 > contents.length - 1) {
         return 0;
       } else {
         return currentSongIndex + 1;
@@ -198,19 +200,18 @@ return (
 <Container>
    
     <Audio
-      src={  index>=currentSongIndex ?`${BASE_URL}${audios[index].episode_audio}` : `${BASE_URL}${audios[currentSongIndex].episode_audio}` }
-      ref={audioEl}
+     // src={  index>=currentSongIndex ?`${BASE_URL}${contents[index].episode_audio}` : `${BASE_URL}${contents[currentSongIndex].episode_audio}` }
+        src={  index>=currentSongIndex ? contents[currentSongIndex].audio : contents[index].audio }
+     ref={audioEl}
       onLoadedData={(e) => {
         setDuration(e.currentTarget.duration.toFixed(2));
       }}
       onTimeUpdate={getCurrDuration}
     ></Audio>
     <Heading>Playing Now</Heading>
-    {
-    console.log( audios[currentSongIndex].episode_name) 
-    }
+  
     
-    <PlayerDetails audio={audios[index]} />
+    <PlayerDetails audio={index>=currentSongIndex ?contents[currentSongIndex]: contents[index].audio} />
     <PlayerControls
       isPlaying={isPlaying}
       setIsPlaying={setIsPlaying}
@@ -231,17 +232,6 @@ return (
         value={postion}
       />
     </SliderContainer>
-
-    <Text>
-      <strong>Next up:</strong>
-      <marquee direction="right" scrollamount="3">
-        {
-        audios.length-1 === currentSongIndex?audios[0].episode_name
-        :audios[nextSongIndex].episode_name
-        }
-        
-      </marquee>
-    </Text>
   </Container>
 
 );}

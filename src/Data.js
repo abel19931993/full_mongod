@@ -5,95 +5,161 @@ import image4 from '../src/Image/photo_2022-05-21_21-47-40.jpg'
 import image5 from '../src/Image/photo_2022-05-21_21-46-58.jpg'
 /***************PODCAST IAMGE LIST */
 
-import audio3 from "../src/Image/DJOW - LOSING CONTROL (ORIGINAL MIX).mp3";
-import audio4 from "../src/Image/Teddy  Girmawineto.mp3"
 import image6 from '../src/Image/photo_2022-05-21_21-47-13.jpg';
 import image7 from '../src/Image/photo_2022-05-21_21-46-55.jpg'
 import image8 from '../src/Image/photo_2022-05-21_21-47-20.jpg'
 import image9 from '../src/Image/photo_2022-05-21_21-47-18.jpg'
 import audio10 from '../src/Image/Pamfalon -  Dish Fela_250919085546.mp3'
+import audioJacky from '../src/Image/05 Track 5(1).mp3'
+import audioJonny from '../src/Image/JONNY%20RAGGA%20-%20GIVE%20ME%20THE%20KEY.mp3'
+import audioNaty from '../src/Image/Naty-man YEJEMERIYAYE-07.mp3'
+import audioTeddy from '../src/Image/Teddy  Girmawineto.mp3'
 
 export const AllCatgories = [
     {
         id:1,
         img:image1,
-        title:"New Release"
+        title:"Tezeta"
     },
     {
         id:2,
         img:image1,
-        title:"Charts"
+        title:"Bati"
     },
     {
         id:3,
         img:image1,
-        title:"New Release"
+        title:"Ambassel"
     },
     {
         id:4,
         img:image1,
-        title:"New Release"
+        title:"Anchihoy"
+    },
+    {
+        id:5,
+        img:image1,
+        title:"Amharic"
+    },
+    {
+        id:6,
+        img:image1,
+        title:"Oromia"
+    },
+    {
+        id:7,
+        img:image1,
+        title:"Tigray"
+    },
+    {
+        id:8,
+        img:image1,
+        title:"Welayta"
+    },
+    {
+        id:9,
+        img:image1,
+        title:"Somaliya"
+    },
+    {
+        id:10,
+        img:image1,
+        title:"Afro Beat"
+    },
+    {
+        id:11,
+        img:image1,
+        title:"Oldies"
+    },
+    {
+        id:12,
+        img:image1,
+        title:"Ethio-Jazz"
+    },
+    {
+        id:13,
+        img:image1,
+        title:"Ethio-Regga"
+    },
+    {
+        id:14,
+        img:image1,
+        title:"Guragena"
+    },
+    {
+        id:15,
+        img:image1,
+        title:"Zemenawi"
+    },
+    {
+        id:16,
+        img:image1,
+        title:"Traditional"
     },
     
 
 ]
 export const LoveMusic =[
     {
+        id:0,
+        img:image4,
+        musicTitle:"Girmawinto",
+        artistName:"Teddy Afro",
+        audio:audioTeddy,
+        releasedDate:"Released on 05/20/2020"
+    },
+    {
         id:1,
-        img:image1,
-        musicTitle:"Harry's House",
-        artistName:"by Harry Styles",
+        img:image2,
+        musicTitle:"Ende Amora",
+        artistName:"Jacky Gossaye",
+        audio:audioJacky,
         releasedDate:"Released on 05/20/2022"
     },
     {
         id:2,
-        img:image2,
-        musicTitle:"rising",
-        artistName:"by mxmtoon",
+        img:image3,
+        musicTitle:"Jonniy Raga",
+        artistName:"Give Me The Key",
+        audio:audioJonny,
         releasedDate:"Released on 05/20/2022"
     },
     {
         id:3,
-        img:image3,
-        musicTitle:"Harry's House",
-        artistName:"by Harry Styles",
-        releasedDate:"Released on 05/20/2022"
-    },
-    {
-        id:4,
         img:image4,
-        musicTitle:"Harry's House",
-        artistName:"by Harry Styles",
+        musicTitle:"Yemejemeriyaye",
+        artistName:"Naty Man",
+        audio:audioNaty,
         releasedDate:"Released on 05/20/2022"
     },
-    {
-        id:5,
-        img:image5,
-        musicTitle:"Harry's House",
-        artistName:"by Harry Styles",
-        releasedDate:"Released on 05/20/2022"
-    },
-    {
-        id:6,
-        img:image6,
-        musicTitle:"rising",
-        artistName:"by mxmtoon",
-        releasedDate:"Released on 05/20/2022"
-    },
-    {
-        id:7,
-        img:image7,
-        musicTitle:"Harry's House",
-        artistName:"by Harry Styles",
-        releasedDate:"Released on 05/20/2022"
-    },
-    {
-        id:8,
-        img:image8,
-        musicTitle:"Harry's House",
-        artistName:"by Harry Styles",
-        releasedDate:"Released on 05/20/2022"
-    },
+    // {
+    //     id:5,
+    //     img:image5,
+    //     musicTitle:"Harry's House",
+    //     artistName:"by Harry Styles",
+    //     releasedDate:"Released on 05/20/2022"
+    // },
+    // {
+    //     id:6,
+    //     img:image6,
+    //     musicTitle:"rising",
+    //     artistName:"by mxmtoon",
+    //     releasedDate:"Released on 05/20/2022"
+    // },
+    // {
+    //     id:7,
+    //     img:image7,
+    //     musicTitle:"Harry's House",
+    //     artistName:"by Harry Styles",
+    //     releasedDate:"Released on 05/20/2022"
+    // },
+    // {
+    //     id:8,
+    //     img:image8,
+    //     musicTitle:"Harry's House",
+    //     artistName:"by Harry Styles",
+    //     releasedDate:"Released on 05/20/2022"
+    // },
 ]
 export const LoveArtist =[
     {
@@ -283,29 +349,29 @@ export const all =[
     },
     
 ]
-export const AllAudio =[
-    {
-      id:1,
-      audio:audio10,
-      index:0,
-      image:image1,
-      epsiode_name:"A",
-      artist:"a"
-    },
-    {
-        id:2,
-        audio:audio4,
-        index:1,
-        image:image2,
-        epsiode_name:"B",
-        artist:"b"
-      },
-      {
-        id:3,
-        audio:audio3,
-        index:2,
-        image:image3,
-        epsiode_name:"C",
-        artist:"c"
-      }
-]
+// export const AllAudio =[
+//     {
+//       id:1,
+//       audio:audio10,
+//       index:0,
+//       image:image1,
+//       epsiode_name:"A",
+//       artist:"a"
+//     },
+//     {
+//         id:2,
+//         audio:audio4,
+//         index:1,
+//         image:image2,
+//         epsiode_name:"B",
+//         artist:"b"
+//       },
+//       {
+//         id:3,
+//         audio:audio3,
+//         index:2,
+//         image:image3,
+//         epsiode_name:"C",
+//         artist:"c"
+//       }
+// ]

@@ -6,9 +6,9 @@ import imageurl from "../Image/photo_2022-05-21_21-47-02.jpg";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addEpisode, removeEpsiode } from "../redux/playerRedux";
+//import { addEpisode, removeEpsiode } from "../redux/playerRedux";
 import { Link } from "react-router-dom";
-import { BASE_URL,BASE_URL_LOCAL} from '../Env'
+import { BASE_URL, BASE_URL_LOCAL } from "../Env";
 
 const Container = styled.div`
   display: flex;
@@ -73,29 +73,12 @@ const SubButton = styled.div`
   color: white;
 `;
 
-const DeatailDiscription = () => {
-  const episode = useSelector((state) => state.player);
+const DeatailDiscription = ({ Contents}) => {
+  // const episode = useSelector((state) => state.player);
   const dispatch = useDispatch();
   const location = useLocation();
-  const id = location.pathname.split("/")[2];
-  const [podcast, setPodcast] = useState([]);{
-    console.log(id)
-    console.log(BASE_URL)
-  }
-  useEffect(() => {
-    const getPodcast = async () => {
-      try {
-        const res = await axios.get(`${BASE_URL}/podcast/${id}`);
-
-        setPodcast(res.data);
-        console.log(res.data)
-      
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getPodcast();
-  }, []);
+  const type = location.pathname.split("/")[1];
+  
   const [episodes, setEpisodes] = useState([]);
   useEffect(() => {
     // const getPodcast = async () => {
@@ -103,7 +86,6 @@ const DeatailDiscription = () => {
     //     const res = await axios.get(
     //       `${BASE_URL}/episode/${id}/epsiode`
     //     );
-
     //     setEpisodes(res.data);
     //   } catch (err) {
     //     console.log(err);
@@ -114,24 +96,23 @@ const DeatailDiscription = () => {
   const handleClick = (index) => {
     // if (episode.episodes.length >= 1) {
     //   dispatch(removeEpsiode());
-    
     // }
-
     // dispatch(addEpisode({ episodes,index }));
-  
   };
-
+if(type === "music")
+{ 
   return (
     <Container>
       <ImageContainer>
-        <Image src={`${BASE_URL}${podcast.image}`}/>
+        {/* <Image src={`${BASE_URL}${Contents.image}`} /> */}
+        <Image src={Contents.album_image} />
       </ImageContainer>
       <Desc>
-        <Title>{podcast.podcasters}</Title>
-        <SubTitle>{podcast.title}</SubTitle>
-        <DetailText>{podcast.description}</DetailText>
+        <Title>{Contents.artist_name}</Title>
+        <SubTitle>{Contents.album_title}</SubTitle>
+        <DetailText>{Contents.album_description}</DetailText>
         <ButtonContainer>
-         <Button onClick={()=>handleClick(0)}>
+          <Button onClick={() => handleClick(0)}>
             <PlayArrowIcon />
           </Button>
           <SubButton>
@@ -141,6 +122,52 @@ const DeatailDiscription = () => {
       </Desc>
     </Container>
   );
-};
-
+}
+else if(type === "podcast") {
+  return (
+    <Container>
+      <ImageContainer>
+        {/* <Image src={`${BASE_URL}${Contents.image}`} /> */}
+        <Image src={Contents.image} />
+      </ImageContainer>
+      <Desc>
+        <Title>{Contents.podcasters}</Title>
+        <SubTitle>{Contents.title}</SubTitle>
+        <DetailText>{Contents.podcast_description}</DetailText>
+        <ButtonContainer>
+          <Button onClick={() => handleClick(0)}>
+            <PlayArrowIcon />
+          </Button>
+          <SubButton>
+            <FavoriteIcon />
+          </SubButton>
+        </ButtonContainer>
+      </Desc>
+    </Container>
+  );
+}
+else{
+  return (
+    <Container>
+      <ImageContainer>
+        {/* <Image src={`${BASE_URL}${Contents.image}`} /> */}
+        <Image src={Contents.image} />
+      </ImageContainer>
+      <Desc>
+        <Title>{Contents.podcasters}</Title>
+        <SubTitle>{Contents.title}</SubTitle>
+        <DetailText>{Contents.podcast_description}</DetailText>
+        <ButtonContainer>
+          <Button onClick={() => handleClick(0)}>
+            <PlayArrowIcon />
+          </Button>
+          <SubButton>
+            <FavoriteIcon />
+          </SubButton>
+        </ButtonContainer>
+      </Desc>
+    </Container>
+  );
+}
+}
 export default DeatailDiscription;

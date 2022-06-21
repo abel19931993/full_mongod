@@ -1,23 +1,23 @@
 import React from 'react'
 import "../Styles/MainMenu.css"
 // import Categories from './Categories';
-import MusicLoveCard from '../Components/MusicLoveCard';
-import LovedArtist from '../Components/LovedArtist';
+import Musics from '../Components/Musics';
+import Artists from '../Components/Artists';
 import NewRelease from '../Components/NewRelease';
-import Generes from '../Components/Generes';
+import NewAlbum from '../Components/NewAlbum';
 import TopBar from '../Components/TopBar';
-import Categories from '../Components/Podcast/Categories';
+import Categories from '../Components/Categories';
 const Music = () => {
   return (
     <>
    
     <div className='mainContainer' style={{ overflowY: 'scroll', marginTop:"50px"}} >
     <TopBar/> 
-          <MusicLoveCard/> 
-          <LovedArtist/>
+          <Musics/> 
+          <Artists/>
           <Categories/>
           <NewRelease/>
-          <Generes/> 
+          <NewAlbum/>
         </div>
         </>
   )

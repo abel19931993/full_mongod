@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "../Styles/MainMenu.css"
 // import Categories from './Categories';
-import MusicLoveCard from '../Components/MusicLoveCard';
-import LovedArtist from '../Components/LovedArtist';
+
+// import LovedArtist from '../Components/Artists';
 import NewRelease from '../Components/NewRelease';
 import Generes from '../Components/Generes';
 import TopBar from '../Components/TopBar';

@@ -1,11 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-
+const Infoi = styled.div`
+opacity:0;
+ position:absolute ;
+background-color:rgba(0,0,0,0.8);
+top: 0vh;
+left:0vh;
+padding-top:21vh ;
+padding-left:1vh ;
+height:15vh; 
+width:90% ;
+display:flex;`
 const Container = styled.div`
  flex:1; 
- margin:3px;
- height:23vh;
+ margin:4px;
+ height:15vh;
+ width:40vh;
  position:relative ;
+ &:hover ${Infoi}{
+    opacity : 1;
+ }
  `
 const Image = styled.img`
  border-radius:5px ;
@@ -33,15 +48,19 @@ font-size:20px ;
 
 const CategoryItem = ({item}) => {
   return (
-    <Container>
-      {console.log("geners")}
+    <Link to={`/listCategory/${item.title}`}>
+    <Container >
+     
         <Image src={item.img}/>
+        <Infoi>
         
+        </Infoi>
         <Info>
             <Title>{item.title}</Title>
         </Info>
         
     </Container>
+    </Link>
   )
 }
 
